@@ -99,7 +99,7 @@ terminal block  2 pos   |8        |mouser 845-30.702 (ou mouser 651-1729128)
 headers                 |2        |mouser 855-M20-7821546
 high speed optocoupler  |1        |mouser 630-6N137
 R 200 ohm               |9        |mouser 71-CCF50-200
-
+shottky diode           |1        |mouser 833-SR108-TP
 
 
 ![logical schema](doc/schemaEagle2.png "Eagle physical schema")

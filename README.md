@@ -86,7 +86,6 @@ bridge rectifier        |1        |mouser 625-B40C800G-E4
 DC-DC converter (9VDC)  |1        |mouser 490-V7809-1000 (or cheaper : voltage regulator mouser 511-L7809CV in that case buy also a heatsink)
 capa 330uF              |1        |mouser 667-EEU-FM1C331
 capa 10uF               |1        |mouser 581-TAP106K025SCS
-diode 4004              |1        |mouser 512-1N4004
 R 10k ohm               |4        |mouser 71-CCF50-10K
 R 1k ohm                |1        |mouser 603-CFR-12JR-521K
 diode 4148              |1        |mouser 512-1N4148
@@ -97,6 +96,8 @@ terminal block  2 pos   |8        |mouser 845-30.702 (ou mouser 651-1729128)
 headers                 |2        |mouser 855-M20-7821546
 high speed optocoupler  |1        |mouser 630-6N137
 R 200 ohm               |9        |mouser 71-CCF50-200
+shottky diode           |1        |mouser 833-SR108-TP
+
 
 
 ![logical schema](doc/schemaEagle2.png "Eagle physical schema")
