@@ -13,6 +13,8 @@
 #define LIGHT3 9
 #define LIGHT4 10
 #define LIGHT5 11
+#define LIGHT6 4
+#define LIGHT7 13
 #define LEDCONTROL 12 
 #define PUSHBUTTON 5
 #define LEARNINGBUTTON 3
@@ -43,7 +45,7 @@ void showAcknowledge(int nb) {
  * work done on connected lights depending on their state
  */
 void treatLight(int switchStatus,int lightMode) {
-  static int valLight[6]={0,0,0,0,0,0};
+  static int valLight[8]={0,0,0,0,0,0,0,0};
   static int blink=-1;
   static int chain=0;
   
@@ -57,9 +59,9 @@ void treatLight(int switchStatus,int lightMode) {
      */
     case 0:
       if (switchStatus==HIGH) {
-        for (int i=0;i<6;i++) if (valLight[i]<255) valLight[i]+=5;
+        for (int i=0;i<8;i++) if (valLight[i]<255) valLight[i]+=5;
       } else {
-        for (int i=0;i<6;i++) if (valLight[i]>0) valLight[i]-=5;
+        for (int i=0;i<8;i++) if (valLight[i]>0) valLight[i]-=5;
       }
       break;
     /*
@@ -70,9 +72,9 @@ void treatLight(int switchStatus,int lightMode) {
      */
     case 1:
       if (switchStatus==HIGH) {
-        for (int i=0;i<6;i++) if (valLight[i]<255) valLight[i]+=5;
+        for (int i=0;i<8;i++) if (valLight[i]<255) valLight[i]+=5;
       } else {
-        for (int i=0;i<6;i++) if (valLight[i]>0) valLight[i]-=5;
+        for (int i=0;i<8;i++) if (valLight[i]>0) valLight[i]-=5;
       }
       
       /* 1% chance to flicker 1 of the 3 lights */
@@ -85,6 +87,8 @@ void treatLight(int switchStatus,int lightMode) {
         analogWrite(LIGHT3,valLight[3]);
         analogWrite(LIGHT4,valLight[4]);
         analogWrite(LIGHT5,valLight[5]);
+        analogWrite(LIGHT6,valLight[6]);
+        analogWrite(LIGHT7,valLight[7]);
         delay(50);
         valLight[blink]=tmp;
       }
@@ -111,6 +115,12 @@ void treatLight(int switchStatus,int lightMode) {
         valLight[5]=255;
       } else if (chain==60) {
         valLight[5]=0;
+        valLight[6]=255;
+      } else if (chain==70) {
+        valLight[6]=0;
+        valLight[7]=255;
+      } else if (chain==80) {
+        valLight[7]=0;
         valLight[0]=255;
         chain=0;
       }
@@ -122,6 +132,8 @@ void treatLight(int switchStatus,int lightMode) {
   analogWrite(LIGHT3,valLight[3]);
   analogWrite(LIGHT4,valLight[4]);
   analogWrite(LIGHT5,valLight[5]);
+  analogWrite(LIGHT6,valLight[6]);
+  analogWrite(LIGHT7,valLight[7]);
 }
 
 
@@ -176,13 +188,15 @@ void BasicAccDecoderPacket_Handler(int address, boolean activate, byte data)
  */
 void setup() {
   // put your setup code here, to run once:
-  pinMode(LIGHT0, OUTPUT);     
-  pinMode(LIGHT1, OUTPUT);     
-  pinMode(LIGHT2, OUTPUT);     
-  pinMode(LIGHT3, OUTPUT);     
-  pinMode(LIGHT4, OUTPUT);     
-  pinMode(LIGHT5, OUTPUT);     
-  pinMode(LEDCONTROL, OUTPUT);     
+  pinMode(LIGHT0, OUTPUT);
+  pinMode(LIGHT1, OUTPUT);
+  pinMode(LIGHT2, OUTPUT);
+  pinMode(LIGHT3, OUTPUT);
+  pinMode(LIGHT4, OUTPUT);
+  pinMode(LIGHT5, OUTPUT);
+  pinMode(LIGHT6, OUTPUT);
+  pinMode(LIGHT7, OUTPUT);
+  pinMode(LEDCONTROL, OUTPUT);
   pinMode(PUSHBUTTON, INPUT);
   pinMode(LEARNINGBUTTON,INPUT);
   
