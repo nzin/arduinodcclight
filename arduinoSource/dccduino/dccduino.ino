@@ -7,14 +7,14 @@
 #define EEPROM_SWITCHSTATUS 1  // we store the last switch status (send via dcc)
 #define EEPROM_ADDRESS 2  // we store our dcc address
 
-#define LIGHT0 6
-#define LIGHT1 7
-#define LIGHT2 8
+#define LIGHT0 13
+#define LIGHT1 8
+#define LIGHT2 4
 #define LIGHT3 9
 #define LIGHT4 10
 #define LIGHT5 11
-#define LIGHT6 4
-#define LIGHT7 13
+#define LIGHT6 7
+#define LIGHT7 6
 #define LEDCONTROL 12 
 #define PUSHBUTTON 5
 #define LEARNINGBUTTON 3
