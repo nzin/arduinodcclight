@@ -16,7 +16,6 @@
 #define LEDCONTROL 12 
 #define PUSHBUTTON 5
 #define LEARNINGBUTTON 3
-#define RELAY 4
 
 #define MAXLIGHTMODE 2 // mode0=continuous, mode1=flicketing, mode2=roundrobin
 int lightMode=0;
@@ -44,7 +43,7 @@ void showAcknowledge(int nb) {
  * work done on connected lights depending on their state
  */
 void treatLight(int switchStatus,int lightMode) {
-  static int valLight[6]={0,0,0};
+  static int valLight[6]={0,0,0,0,0,0};
   static int blink=-1;
   static int chain=0;
   
@@ -131,7 +130,7 @@ void treatLight(int switchStatus,int lightMode) {
  * when a DCC packet is received, this function is called
  * for our needs, we decode the address:
  * - if we are in learning mode, we store this address as our new address
- * - if we are in normal mode, we switch on, or off light and relay, depending on the "enable" state command
+ * - if we are in normal mode, we switch on, or off light, depending on the "enable" state command
  */
 void BasicAccDecoderPacket_Handler(int address, boolean activate, byte data)
 {
@@ -154,7 +153,6 @@ void BasicAccDecoderPacket_Handler(int address, boolean activate, byte data)
     if (myaddress==address) {
       switchStatus=enable;
       EEPROM.write(EEPROM_SWITCHSTATUS,switchStatus);
-      digitalWrite(RELAY,switchStatus);
     }
     /*
      * special case:
@@ -174,7 +172,7 @@ void BasicAccDecoderPacket_Handler(int address, boolean activate, byte data)
 
 /*
  * standard arduino initialisation function
- * we initialize lights, button, and relay pins
+ * we initialize lights, button
  */
 void setup() {
   // put your setup code here, to run once:
@@ -187,13 +185,11 @@ void setup() {
   pinMode(LEDCONTROL, OUTPUT);     
   pinMode(PUSHBUTTON, INPUT);
   pinMode(LEARNINGBUTTON,INPUT);
-  pinMode(RELAY,OUTPUT);
   
   lightMode=EEPROM.read(EEPROM_LIGHTMODE);
   if (lightMode>MAXLIGHTMODE) lightMode=0;
   switchStatus=EEPROM.read(EEPROM_SWITCHSTATUS);
   if (switchStatus!=HIGH && switchStatus!=LOW) switchStatus=HIGH;
-  digitalWrite(RELAY,switchStatus);
   
   showAcknowledge(lightMode+1);
   randomSeed(analogRead(A3));
