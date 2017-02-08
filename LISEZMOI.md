@@ -92,10 +92,10 @@ diode 4004              |1        |mouser 512-1N4004
 R 10k ohm               |4        |mouser 71-CCF50-10K
 R 1k ohm                |1        |mouser 603-CFR-12JR-521K
 diode 4148              |1        |mouser 512-1N4148
-toggle button           |1        |sparkfun COM-00102
-push button             |1        |SPARKUN COM-00097
-led                     |1        |mouser 941-C4SMFRJSCT0W0BB2
-terminal block  2 pos   |8        |mouser 845-30.702 (ou mouser 651-1729128)
+toggle button           |1        |sparkfun COM-00102 (maybe mouser 633-SS12SDP2)
+push button             |1        |SPARKUN COM-00097 (ou mouser 693-1301.9308)
+led                     |1        |mouser 941-C4SMFRJSCT0W0BB2 (or 630-HLMP-1301)
+terminal block  2 pos   |10       |mouser 845-30.702 (ou mouser 651-1729128)
 headers                 |2        |mouser 855-M20-7821546
 high speed optocoupler  |1        |mouser 630-6N137
 R 200 ohm               |9        |mouser 71-CCF50-200
